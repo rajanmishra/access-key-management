@@ -1,0 +1,30 @@
+# Dependency directories
+node_modules/
+
+# Environment configuration
+.env
+
+# Build artifacts
+dist/
+build/
+
+# Editor and IDE specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs and debugging files
+logs/
+db_data/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
+.DS_Store
+Thumbs.db

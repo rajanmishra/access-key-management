@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo-container
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./db_data:/data/db
+
+  redis:
+    image: redis
+    restart: always
+    container_name: redis-container
+    ports:
+      - "6379:6379"
+    
+  access-key-management:
+    build: ./access-key-management
+    ports:
+      - '3100:3000' 
+    volumes:
+      - ./access-key-management:/app
+      - /app/node_modules
+      - /app/dist
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://root:admin@mongo-container:27017
+      MONGODB_MINPOOL: 2
+      MONGODB_MAXPOOL: 5
+      CHANNEL_NAME: events
+      REDIS_HOST: redis-container
+      REDIS_PORT: 6379
+      REDIS_TTL: 5000
+    depends_on:
+      - mongo
+      - redis  
+
+  web3-token-information:
+    build: ./web3-token-information
+    ports:
+      - '3200:3000'
+    volumes:
+      - ./web3-token-information:/app
+      - /app/node_modules
+      - /app/dist
+    environment:
+      NODE_ENV: development
+      CHANNEL_NAME: events
+      REDIS_HOST: redis-container
+      REDIS_PORT: 6379
+      REDIS_TTL: 5000   
+    depends_on:
+      - redis
