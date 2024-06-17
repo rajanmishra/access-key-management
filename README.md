@@ -2,7 +2,7 @@
 
 This guide provides steps to deploy and run the access-key-management and web3-token-information
 
-Demo - https://www.loom.com/share/d15d2c995ba24f95804f3360c86c3cf1?sid=59fcf7e1-1c43-4e8a-89a7-aba196fadf59
+Demo - https://www.loom.com/share/82fbe08b4fd64e519ead03a8cd47934f?sid=de26ffef-f5e7-42b7-84b1-2ed186e5a1ee
 
 ## Prerequisites
  -- Node.js installed (version 18.x or higher)
